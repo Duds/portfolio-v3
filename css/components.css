@@ -1,0 +1,535 @@
+/**
+ * Component Styles
+ * Reusable UI components with pragmatic, minimal aesthetic
+ */
+
+/* ================================
+   LAYOUT COMPONENTS
+   ================================ */
+
+/* Container */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  width: 100%;
+}
+
+/* Section */
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Flexbox utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================================
+   BUTTONS
+   ================================ */
+
+/* Base button styles */
+.btn {
+  display: inline-block;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border-radius: var(--radius-full);
+  padding: 0.75rem 2rem;
+  line-height: var(--line-height-normal);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-yellow);
+  outline-offset: 2px;
+}
+
+/* Primary button - Yellow pill */
+.btn-primary {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-yellow);
+  text-decoration: none;
+  color: var(--color-black);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary button - Outlined */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-black);
+  border: 2px solid var(--color-black);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+/* Button sizes */
+.btn-small {
+  font-size: var(--font-size-sm);
+  padding: 0.5rem 1.5rem;
+}
+
+.btn-large {
+  font-size: var(--font-size-lg);
+  padding: 1rem 2.5rem;
+}
+
+/* Disabled state */
+.btn:disabled,
+.btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn:disabled:hover,
+.btn.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ================================
+   FORMS
+   ================================ */
+
+/* Form group */
+.form-group {
+  margin-bottom: var(--space-lg);
+}
+
+/* Labels */
+.label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-black);
+}
+
+/* Input fields */
+.input,
+.textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  background-color: var(--color-white);
+  border: 2px solid var(--color-grey);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-normal);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-grey);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Error state */
+.input.error,
+.textarea.error {
+  border-color: var(--color-error);
+}
+
+/* Error message */
+.error-message {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+}
+
+/* Success message */
+.success-message {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-success);
+}
+
+/* ================================
+   CARDS
+   ================================ */
+
+/* Base card */
+.card {
+  background-color: var(--color-white);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Card with image */
+.card-image {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
+/* Card title */
+.card-title {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-sm);
+  color: var(--color-heading);
+}
+
+/* Card description */
+.card-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+/* Service card variant */
+.card-service {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.card-service:hover {
+  border-color: var(--color-yellow);
+}
+
+/* Testimonial card variant */
+.card-testimonial {
+  border-left: 4px solid var(--color-yellow);
+  padding-left: var(--space-lg);
+}
+
+/* ================================
+   NAVIGATION
+   ================================ */
+
+/* Header */
+.header {
+  background-color: var(--color-white);
+  border-bottom: var(--border-width) solid var(--color-border);
+  padding: var(--space-lg) 0;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  font-size: var(--font-size-h5);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-black);
+}
+
+.logo:hover {
+  color: var(--color-yellow);
+  text-decoration: none;
+}
+
+/* Nav menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: var(--space-lg);
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+/* Nav links */
+.nav-link {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.nav-link:hover {
+  color: var(--color-yellow);
+  text-decoration: none;
+}
+
+/* Active nav link */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-yellow);
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-black);
+  margin: 5px 0;
+  transition: all var(--transition-normal);
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  color: var(--color-white);
+}
+
+.footer a {
+  color: var(--color-white);
+}
+
+.footer a:hover {
+  color: var(--color-yellow);
+}
+
+/* ================================
+   HERO SECTION
+   ================================ */
+
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-4xl) 0;
+}
+
+.hero-title {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--space-md);
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-grey);
+  margin-bottom: var(--space-xl);
+  font-weight: var(--font-weight-regular);
+}
+
+.hero-cta {
+  margin-top: var(--space-lg);
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+   ================================ */
+
+/* Tablets and smaller */
+@media (max-width: 768px) {
+  /* Navigation */
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    border-bottom: var(--border-width) solid var(--color-border);
+    padding: var(--space-md);
+    gap: var(--space-md);
+  }
+  
+  .nav-menu.active {
+    display: flex;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  /* Grid adjustments */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Hero */
+  .hero {
+    min-height: 50vh;
+    padding: var(--space-2xl) 0;
+  }
+  
+  /* Cards */
+  .card {
+    padding: var(--space-lg);
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  /* Buttons */
+  .btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
+  
+  .btn-small {
+    width: auto;
+  }
+  
+  /* Hero */
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+}
+
+/* ================================
+   UTILITY CLASSES
+   ================================ */
+
+/* Spacing utilities */
+.mt-0 { margin-top: 0; }
+.mt-xs { margin-top: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.mt-2xl { margin-top: var(--space-2xl); }
+.mt-3xl { margin-top: var(--space-3xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-xs { margin-bottom: var(--space-xs); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+.mb-3xl { margin-bottom: var(--space-3xl); }
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-yellow);
+  color: var(--color-black);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Placeholder image for project cards */
+.placeholder-image {
+  background-color: var(--color-grey-light);
+  height: 200px;
+  border-radius: var(--radius-md);
+}
+
+/* Content width limiters */
+.content-narrow {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.content-medium {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Full width button */
+.btn-full {
+  width: 100%;
+}
+
