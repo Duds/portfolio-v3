@@ -1,0 +1,78 @@
+---
+alwaysApply: true
+---
+
+# Documentation Organization Rules
+
+## Core Principles
+
+1. **All documentation MUST be placed in `/.docs/`**
+   - No `.md` files in project root except `README.md`
+   - No documentation scattered across the codebase
+
+2. **Maintain organized subdirectories in `/.docs/`**
+   - `/architecture/` - Technical architecture and infrastructure
+   - `/deployment/` - Deployment guides and procedures
+   - `/design/` - Design guidelines, styling, and UI/UX
+   - `/templates/` - Reusable templates and checklists
+   - `/processes/` - Development processes and workflows
+   - `/project/` - Project-specific docs and summaries
+
+3. **Follow file naming conventions**
+   - Use **kebab-case** for general docs: `styling-guide.md`, `deployment-workflow.md`
+   - Use **SCREAMING_SNAKE_CASE** for important/high-level docs: `README.md`, `IMPLEMENTATION_SUMMARY.md`, `AZURE_SETUP.md`
+   - Be descriptive and specific: `digital-transformation-readiness-checklist.md` not `checklist.md`
+
+4. **Use consistent naming patterns**
+   - Setup guides: `*_SETUP.md` or `setup-*.md`
+   - Deployment: `DEPLOY_*.md` or `deployment-*.md`
+   - Guides: `*-guide.md`
+   - Templates: `*-template.md`
+   - Checklists: `*-checklist.md`
+   - Summaries: `*_SUMMARY.md` or `*-summary.md`
+
+5. **Structure documents properly**
+   - Start with H1 title
+   - Include overview/purpose section
+   - Add table of contents for long docs (>200 lines)
+   - Include "Last Updated" timestamp at bottom
+   - Use proper heading hierarchy (don't skip levels)
+
+6. **When creating new documentation**
+   - Place in appropriate subdirectory within `/.docs/`
+   - Follow naming conventions
+   - Include all required sections
+   - Link to related documentation
+
+7. **When referencing documentation**
+   - Always link to the full doc in `/.docs/`
+   - Use relative paths: `[Setup Guide](/.docs/deployment/AZURE_SETUP.md)`
+   - Keep README.md as a hub with links to detailed docs
+
+## Full Documentation Standards
+
+For complete details, see: `/.docs/DOCUMENTATION_STANDARDS.md`
+
+This file includes:
+
+- Detailed directory structure
+- Complete naming conventions
+- Document structure requirements
+- Markdown best practices
+- Writing style guidelines
+- Maintenance procedures
+- Migration guide for organizing existing docs
+
+## Quick Reference
+
+| Action | Rule |
+|--------|------|
+| Creating new doc | Place in `/.docs/[subdirectory]/` |
+| Setup guide | Use `*_SETUP.md` or `setup-*.md` |
+| Deployment guide | Use `DEPLOY_*.md` or `deployment-*.md` |
+| Style guide | Use `*-guide.md` |
+| Template | Use `*-template.md` |
+| Checklist | Use `*-checklist.md` |
+| Project summary | Use `*_SUMMARY.md` |
+| Important docs | Use SCREAMING_SNAKE_CASE |
+| General docs | Use kebab-case |

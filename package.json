@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-v3",
+  "version": "1.0.0",
+  "description": "Dale Rogers service design portfolio - vanilla HTML/CSS/JS with markdown case studies",
+  "private": true,
+  "scripts": {
+    "build:content": "node scripts/build-content.js"
+  },
+  "keywords": [
+    "portfolio",
+    "service-design"
+  ],
+  "author": "Dale Rogers",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "marked": "^12.0.0"
+  }
+}
+

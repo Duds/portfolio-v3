@@ -1,58 +1,131 @@
 /**
  * CSS Custom Properties (Variables)
- * Portfolio V3 - Styling System
+ * Portfolio V3 - Aurora Interface v2
  * 
  * Based on styling guide with pragmatic, minimal aesthetic
- * Primary accent: Yellow
- * Typography: Work Sans
+ * Primary accent: Bloom Pink (#F28DA8)
+ * Typography: Roboto
  * Layout: Spacious
+ * Theme: Inverted base with vibrant accent palette
  */
 
 :root {
   /* ================================
-     COLOUR PALETTE
+     AURORA INTERFACE v2 - INVERTED BASE
      ================================ */
   
-  /* Base Colours */
-  --color-black: #000000;
-  --color-white: #FFFFFF;
-  --color-grey-light: #F5F5F5;
-  --color-grey: #808080;
-  --color-grey-dark: #333333;
-  --color-yellow: #FFD700;
+  /* Base Layer */
+  --color-bg: #E6E6E6;          /* Mist Grey - page background */
+  --color-surface: #F5F5F5;     /* Cloud White - cards, panels */
+  --color-text: #1A1A1A;        /* Carbon Black - primary text */
+  --color-border: #D0D0D0;      /* Neutral divider lines */
+
+  /* Core Accents */
+  --color-primary: #F28DA8;     /* Bloom Pink - main CTA */
+  --color-secondary: #7A5FD9;   /* Violet Core - links, focus */
+  --color-highlight: #F2CB57;   /* Solar Amber - data, info highlights */
+  --color-action: #F28749;      /* Tangerine Edge - active/warning */
+
+  /* Neutral Extensions */
+  --color-muted: #B3B3B3;       /* Disabled or subdued text */
+  --color-focus: #7A5FD9;       /* Focus outline colour */
+
+  /* Semantic Variants - Success */
+  --color-success-bg: #E6F5EA;
+  --color-success-border: #8BD49C;
+  --color-success-text: #205C31;
+
+  /* Semantic Variants - Info */
+  --color-info-bg: #E8EEFA;
+  --color-info-border: #A5B7ED;
+  --color-info-text: #243E84;
+
+  /* Semantic Variants - Warning */
+  --color-warning-bg: #FFF3E0;
+  --color-warning-border: #F2CB57;
+  --color-warning-text: #6E4A00;
+
+  /* Semantic Variants - Error */
+  --color-error-bg: #FCE9E7;
+  --color-error-border: #F28DA8;
+  --color-error-text: #5C1C1C;
   
-  /* Semantic Colours */
-  --color-primary: var(--color-yellow);
-  --color-text: var(--color-grey-dark);
-  --color-heading: var(--color-black);
-  --color-background: var(--color-white);
-  --color-border: var(--color-grey-light);
-  --color-border-dark: var(--color-grey);
+  /* ================================
+     LEGACY COMPATIBILITY MAPPING
+     ================================ */
+  
+  /* Map old color names to new Aurora palette */
+  --color-white: #FFFFFF;
+  --color-off-white: var(--color-surface);
+  --color-stone-lightest: var(--color-surface);
+  --color-stone-light: var(--color-bg);
+  --color-stone: var(--color-border);
+  --color-stone-dark: var(--color-muted);
+  
+  --color-charcoal-light: var(--color-muted);
+  --color-charcoal: var(--color-text);
+  --color-charcoal-dark: var(--color-text);
+  --color-black: var(--color-text);
+  
+  /* Legacy support */
+  --color-grey-light: var(--color-border);
+  --color-grey: var(--color-muted);
+  --color-grey-dark: var(--color-text);
+  
+  /* Accent colors mapped to Aurora accents */
+  --color-amber-lightest: var(--color-highlight);
+  --color-amber-light: var(--color-primary);
+  --color-amber: var(--color-primary);
+  --color-amber-dark: var(--color-action);
+  --color-amber-darkest: var(--color-action);
+  
+  /* Legacy yellow support */
+  --color-yellow: var(--color-highlight);
+  
+  /* Backwards compatibility aliases */
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --text: var(--color-text);
+  --accent: var(--color-primary);
+  --accent-2: var(--color-action);
+  --neutral-warm: var(--color-highlight);
+  --neutral-cool: var(--color-muted);
+  --focus: var(--color-focus);
   
   /* State Colours */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #DC2626;
-  --color-info: #3B82F6;
+  --color-success: var(--color-success-border);
+  --color-warning: var(--color-warning-border);
+  --color-error: var(--color-error-border);
+  --color-info: var(--color-info-border);
+  
+  /* Semantic Colours */
+  --color-text-light: var(--color-muted);
+  --color-heading: var(--color-text);
+  --color-background: var(--color-bg);
+  --color-background-light: var(--color-surface);
+  --color-background-dark: var(--color-text);
+  --color-background-alt: var(--color-surface);
+  --color-border-dark: var(--color-muted);
   
   /* ================================
      TYPOGRAPHY
      ================================ */
   
   /* Font Families */
-  --font-family-base: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-base: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   
-  /* Font Sizes */
-  --font-size-h1: 3.5rem;      /* 56px */
-  --font-size-h2: 2.5rem;      /* 40px */
-  --font-size-h3: 2rem;        /* 32px */
-  --font-size-h4: 1.5rem;      /* 24px */
-  --font-size-h5: 1.25rem;     /* 20px */
-  --font-size-h6: 1rem;        /* 16px */
-  --font-size-base: 1rem;      /* 16px */
-  --font-size-lg: 1.125rem;    /* 18px */
-  --font-size-sm: 0.875rem;    /* 14px */
-  --font-size-xs: 0.75rem;     /* 12px */
+  /* Font Sizes - Bold, Modern Scale */
+  --font-size-hero: 6.875rem;  /* 110px - For main hero statement */
+  --font-size-h1: 5rem;        /* 80px - Section headers */
+  --font-size-h2: 3.75rem;     /* 60px - Sub-headers */
+  --font-size-h3: 2.5rem;      /* 40px */
+  --font-size-h4: 1.875rem;    /* 30px */
+  --font-size-h5: 1.5rem;      /* 24px */
+  --font-size-h6: 1.25rem;     /* 20px */
+  --font-size-base: 1.125rem;  /* 18px - Larger body text */
+  --font-size-lg: 1.25rem;     /* 20px */
+  --font-size-sm: 1rem;        /* 16px */
+  --font-size-xs: 0.875rem;    /* 14px */
   
   /* Font Weights */
   --font-weight-light: 300;
@@ -122,13 +195,16 @@
      ================================ */
   
   /* Minimal shadows for subtle depth */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
   
   /* Coloured shadow for primary button hover */
-  --shadow-yellow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  --shadow-primary: 0 4px 12px rgba(242, 141, 168, 0.3);
+  --shadow-secondary: 0 4px 12px rgba(122, 95, 217, 0.3);
+  --shadow-amber: var(--shadow-primary); /* Legacy support */
+  --shadow-yellow: var(--shadow-primary); /* Legacy support */
   
   /* ================================
      TRANSITIONS
@@ -173,13 +249,14 @@
 /* Tablets and smaller */
 @media (max-width: 768px) {
   :root {
-    /* Reduce font sizes slightly on mobile */
-    --font-size-h1: 2.5rem;      /* 40px */
-    --font-size-h2: 2rem;        /* 32px */
-    --font-size-h3: 1.5rem;      /* 24px */
-    --font-size-h4: 1.25rem;     /* 20px */
+    /* Scale down bold typography */
+    --font-size-hero: 3.75rem;   /* 60px */
+    --font-size-h1: 3rem;        /* 48px */
+    --font-size-h2: 2.25rem;     /* 36px */
+    --font-size-h3: 1.875rem;    /* 30px */
+    --font-size-h4: 1.5rem;      /* 24px */
     
-    /* Reduce spacing on mobile for better use of space */
+    /* Reduce spacing on tablet for better use of space */
     --space-3xl: 4rem;           /* 64px instead of 96px */
     --space-4xl: 6rem;           /* 96px instead of 128px */
     
@@ -188,16 +265,41 @@
   }
 }
 
+/* Tablet landscape - improved line breaks */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.25rem; /* 36px - between mobile and desktop */
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.0625rem; /* 17px */
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero-tagline {
+    font-size: 1.75rem; /* Slightly smaller on tablet */
+  }
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   :root {
-    /* Further reduce heading sizes */
+    /* Scale down for mobile but keep bold */
+    --font-size-hero: 2.5rem;    /* 40px - still bold */
     --font-size-h1: 2rem;        /* 32px */
     --font-size-h2: 1.5rem;      /* 24px */
+    --font-size-h3: 1.25rem;     /* 20px */
+    --font-size-base: 1rem;      /* 16px on mobile */
     
     /* Tighter spacing on small screens */
     --space-2xl: 3rem;           /* 48px instead of 64px */
     --space-3xl: 3rem;           /* 48px instead of 96px */
+    --space-4xl: 4rem;           /* 64px instead of 128px */
     
     /* Smaller container padding */
     --container-padding: var(--space-sm);
@@ -205,5 +307,75 @@
     /* Reduce grid gap */
     --grid-gap: var(--space-lg);
   }
+}
+
+/* ================================
+   DARK MODE - AURORA INTERFACE v2
+   ================================ */
+
+[data-theme="dark"] {
+  /* Base Layer */
+  --color-bg: #1A1A1A;          /* Graphite */
+  --color-surface: #2A2A2A;     /* Charcoal Mist */
+  --color-text: #F2F2F2;        /* Snow Grey */
+  --color-border: #333333;
+
+  /* Core Accents */
+  --color-primary: #F6A3BA;     /* Bloom Pink+ */
+  --color-secondary: #9A83EB;   /* Violet Core+ */
+  --color-highlight: #FFD877;   /* Solar Amber+ */
+  --color-action: #FF9A63;      /* Tangerine Edge+ */
+
+  /* Neutral Extensions */
+  --color-muted: #888888;
+  --color-focus: #9A83EB;
+
+  /* Semantic Variants - Success */
+  --color-success-bg: #112017;
+  --color-success-border: #3F8F4A;
+  --color-success-text: #E6F3E9;
+
+  /* Semantic Variants - Info */
+  --color-info-bg: #0E1722;
+  --color-info-border: #5F87AF;
+  --color-info-text: #E7F0FA;
+
+  /* Semantic Variants - Warning */
+  --color-warning-bg: #2A1D05;
+  --color-warning-border: #D8A24A;
+  --color-warning-text: #FFF3D9;
+
+  /* Semantic Variants - Error */
+  --color-error-bg: #2A1211;
+  --color-error-border: #C46159;
+  --color-error-text: #F9EFEE;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.6);
+  
+  /* Update legacy compatibility for dark theme */
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --text: var(--color-text);
+  --accent: var(--color-primary);
+  --accent-2: var(--color-action);
+  --neutral-warm: var(--color-highlight);
+  --neutral-cool: var(--color-muted);
+  --focus: var(--color-focus);
+  
+  --color-off-white: var(--color-surface);
+  --color-stone-lightest: var(--color-surface);
+  --color-stone-light: var(--color-bg);
+  --color-background: var(--color-bg);
+  --color-background-light: var(--color-surface);
+  --color-background-dark: var(--color-surface);
+  --color-background-alt: var(--color-surface);
+  --color-heading: var(--color-text);
+  
+  /* Colored shadows for dark mode */
+  --shadow-primary: 0 4px 12px rgba(246, 163, 186, 0.4);
+  --shadow-secondary: 0 4px 12px rgba(154, 131, 235, 0.4);
 }
 

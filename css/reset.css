@@ -96,7 +96,7 @@ a {
 }
 
 *:focus-visible {
-  outline: 3px solid var(--color-yellow, #FFD700);
+  outline: 3px solid var(--focus, #D98C00);
   outline-offset: 2px;
 }
 
@@ -113,6 +113,17 @@ a {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  
+  /* Disable specific animations */
+  .logo-hand {
+    animation: none !important;
+  }
+  
+  .typewriter {
+    border-right: none !important;
+    animation: none !important;
+    color: var(--color-black) !important;
   }
 }
 

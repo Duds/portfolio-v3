@@ -1,0 +1,33 @@
+# robots.txt for Dale Rogers - Service Design Practice
+# Allow all crawlers access to public content
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://dalerogers.com.au/sitemap.xml
+
+# Allow CSS and JavaScript (critical for rendering)
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Disallow admin/private paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /.docs/
+Disallow: /.cursor/
+Disallow: /node_modules/
+
+# Disallow query parameters that don't generate unique content
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Optional: Rate limiting for specific crawlers (uncomment if needed)
+# User-agent: AhrefsBot
+# Crawl-delay: 10
+#
+# User-agent: SemrushBot
+# Crawl-delay: 10
+

@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initActiveNavStates();
     initFormHandling();
+    initWaveAnimation();
+    initGridToggle();
 });
 
 /**
@@ -139,7 +141,7 @@ function initFormHandling() {
     const contactForm = document.querySelector('.contact-form');
     
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Get form data
@@ -159,14 +161,40 @@ function initFormHandling() {
                 return;
             }
             
-            // Simulate form submission (replace with actual endpoint)
-            console.log('Form data:', data);
+            // Disable submit button during submission
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
             
-            // Show success message
-            showFormMessage('Thank you for your message! We\'ll be in touch soon.', 'success');
-            
-            // Reset form
-            this.reset();
+            try {
+                // Submit to Azure Logic App
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    showFormMessage('Thank you for your enquiry! We\'ll respond within 24 hours to discuss your service design needs.', 'success');
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showFormMessage('Sorry, there was an error sending your message. Please email us directly at hello@example.com or call +61 400 000 000', 'error');
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     }
 }
@@ -197,5 +225,66 @@ function showFormMessage(message, type) {
             messageEl.remove();
         }, 5000);
     }
+}
+
+/**
+ * Initialize wave animation for logo hand
+ */
+function initWaveAnimation() {
+    const logoHand = document.querySelector('.logo-hand');
+    if (!logoHand) return;
+    
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+    
+    /**
+     * Trigger wave animation
+     */
+    function wave() {
+        logoHand.classList.add('waving');
+        
+        // Remove class after animation completes
+        setTimeout(() => {
+            logoHand.classList.remove('waving');
+        }, 1200);
+    }
+    
+    /**
+     * Schedule next wave at random interval
+     */
+    function scheduleNextWave() {
+        // Random interval between 8-15 seconds
+        const delay = Math.random() * (15000 - 8000) + 8000;
+        setTimeout(() => {
+            wave();
+            scheduleNextWave();
+        }, delay);
+    }
+    
+    // Initial wave after 1 second
+    setTimeout(() => {
+        wave();
+        scheduleNextWave();
+    }, 1000);
+}
+
+/**
+ * Initialize grid overlay toggle functionality
+ * Development tool for visualizing the 12-column grid layout
+ * Keyboard shortcut: Ctrl/Cmd + G to toggle grid
+ */
+function initGridToggle() {
+    const gridOverlay = document.getElementById('gridOverlay');
+    
+    if (!gridOverlay) return;
+    
+    // Keyboard shortcut: Ctrl/Cmd + G to toggle grid
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'g') {
+            e.preventDefault();
+            gridOverlay.classList.toggle('active');
+        }
+    });
 }
 

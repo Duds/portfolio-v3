@@ -11,10 +11,12 @@ This portfolio website demonstrates strategic and service design capabilities th
 ```
 portfolio-v3/
 ├── .docs/                                  # Documentation
-│   ├── styling-guide.md                    # Complete styling system reference
-│   ├── styling-design-questionnaire.md     # Design requirements
-│   ├── accessibility-review.md             # WCAG AA compliance audit
-│   └── implementation-summary.md           # Implementation documentation
+│   ├── design/
+│   │   ├── styling-guide.md                # Complete styling system reference
+│   │   ├── styling-design-questionnaire.md # Design requirements
+│   │   └── accessibility-review.md         # WCAG AA compliance audit
+│   └── project/
+│       └── IMPLEMENTATION_SUMMARY.md       # Implementation documentation
 ├── .cursor/                                # Development commands
 │   └── commands/
 │       ├── code-review-checklist.md
@@ -126,7 +128,7 @@ All styling is controlled through CSS custom properties in `css/variables.css`:
 --space-3xl: 6rem;  /* Section spacing */
 ```
 
-See `.docs/styling-guide.md` for complete styling system documentation.
+See `.docs/design/styling-guide.md` for complete styling system documentation.
 
 ### Extend Functionality
 
@@ -140,10 +142,10 @@ JavaScript features are in `js/main.js`:
 
 Comprehensive documentation is available in the `.docs/` directory:
 
-- **`styling-guide.md`** - Complete design system reference
-- **`accessibility-review.md`** - WCAG AA compliance documentation
-- **`implementation-summary.md`** - Implementation details and guidelines
-- **`styling-design-questionnaire.md`** - Original design requirements
+- **`design/styling-guide.md`** - Complete design system reference
+- **`design/accessibility-review.md`** - WCAG AA compliance documentation
+- **`project/IMPLEMENTATION_SUMMARY.md`** - Implementation details and guidelines
+- **`design/styling-design-questionnaire.md`** - Original design requirements
 
 ## Development Guidelines
 
@@ -167,7 +169,7 @@ Comprehensive documentation is available in the `.docs/` directory:
 - [ ] Check colour contrast with final images
 - [ ] Add analytics tracking
 
-See `.docs/implementation-summary.md` for complete deployment checklist.
+See `.docs/project/IMPLEMENTATION_SUMMARY.md` for complete deployment checklist.
 
 ## Browser Support
 
@@ -209,7 +211,7 @@ This portfolio is built to WCAG 2.1 Level AA standards:
 - Semantic HTML structure
 - Reduced motion preferences respected
 
-For detailed accessibility audit, see `.docs/accessibility-review.md`
+For detailed accessibility audit, see `.docs/design/accessibility-review.md`
 
 ## Future Enhancements
 
@@ -231,7 +233,7 @@ For detailed accessibility audit, see `.docs/accessibility-review.md`
 - Add multi-language support
 - Create interactive process visualization
 
-See `.docs/implementation-summary.md` for detailed enhancement roadmap.
+See `.docs/project/IMPLEMENTATION_SUMMARY.md` for detailed enhancement roadmap.
 
 ## Licence
 

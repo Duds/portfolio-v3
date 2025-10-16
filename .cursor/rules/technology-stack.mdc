@@ -1,0 +1,338 @@
+---
+description: Technology stack rules enforcing vanilla HTML5/CSS/JS for production with minimal build-time dependencies for markdown parsing
+alwaysApply: false
+---
+# Technology Stack Rules
+
+## Core Principle
+
+**This portfolio MUST remain lightweight, vanilla, and dependency-free in production.**
+
+- ✅ Production code: 100% vanilla HTML5, CSS, JavaScript
+- ✅ Build tools: Minimal dev dependencies for markdown parsing only
+- ✅ Zero runtime dependencies shipped to users
+- ❌ NO frameworks, libraries, bundlers, or preprocessors in production
+
+## Production Code Requirements (MANDATORY)
+
+### HTML5 - Vanilla Only
+
+- ✅ Semantic HTML5 markup
+- ✅ Standard elements: `<article>`, `<section>`, `<nav>`, `<header>`, `<footer>`
+- ✅ Accessible markup with proper ARIA when needed
+- ❌ NO templating frameworks (React, Vue, Angular, Svelte, etc.)
+- ❌ NO template engines (Handlebars, Pug, EJS, etc.)
+- ❌ NO web components libraries
+- ❌ NO JSX or similar syntax
+
+**Examples:**
+
+- ✅ Hand-written HTML files
+- ✅ Generated HTML from markdown (build-time only)
+- ❌ React components
+- ❌ Vue single-file components
+
+### CSS - Vanilla Only
+
+- ✅ Standard CSS3 with modern features
+- ✅ CSS custom properties (variables)
+- ✅ CSS Grid and Flexbox
+- ✅ Media queries for responsive design
+- ✅ Separate files organized by concern (`reset.css`, `variables.css`, `components.css`)
+- ❌ NO CSS frameworks (Bootstrap, Tailwind, Foundation, Bulma, etc.)
+- ❌ NO CSS preprocessors (Sass, Less, Stylus, PostCSS)
+- ❌ NO CSS-in-JS (styled-components, emotion, etc.)
+- ❌ NO utility-class generators
+
+**Examples:**
+
+- ✅ `/css/styles.css` with custom properties
+- ✅ `/css/components.css` with component styles
+- ❌ `import styled from 'styled-components'`
+- ❌ `<div className="flex items-center justify-between">`
+- ❌ `.scss` or `.less` files
+
+### JavaScript - Vanilla Only
+
+- ✅ Modern vanilla JavaScript (ES6+)
+- ✅ Native DOM manipulation
+- ✅ Native Fetch API
+- ✅ Native modules (`import`/`export`) if needed
+- ✅ Manual event handling
+- ❌ NO frameworks (React, Vue, Angular, Svelte, etc.)
+- ❌ NO libraries (jQuery, Lodash, Underscore, etc.)
+- ❌ NO runtime dependencies of any kind
+- ❌ NO TypeScript compilation for production
+- ❌ NO bundlers for production (webpack, vite, parcel, rollup, esbuild)
+
+**Examples:**
+
+- ✅ `document.querySelector('.menu')`
+- ✅ `element.addEventListener('click', handler)`
+- ✅ `fetch('/api/data').then(r => r.json())`
+- ❌ `$('.menu')` (jQuery)
+- ❌ `React.createElement()` or JSX
+- ❌ `import _ from 'lodash'`
+
+## Build-Time Tooling (LIMITED ALLOWANCE)
+
+### Allowed Dev Dependencies
+
+- ✅ Node.js (for running build scripts locally)
+- ✅ **ONE** lightweight markdown parser: `marked`, `markdown-it`, or similar (~15-50KB)
+- ✅ Simple build script to convert `.md` → `.html`
+- ✅ npm/package.json for managing dev dependencies
+- ❌ NO bundlers (webpack, vite, parcel, rollup, esbuild, etc.)
+- ❌ NO transpilers beyond the markdown parser
+- ❌ NO CSS preprocessors
+- ❌ NO additional runtime libraries
+
+### Build Script Requirements
+
+The markdown parser should:
+
+1. Run ONLY when content updates (not on every deploy)
+2. Convert markdown files to static HTML
+3. Be simple (<100 lines of code preferred)
+4. Generate fully-rendered HTML (no client-side parsing)
+5. Require minimal configuration
+
+**Example package.json (allowed):**
+
+```json
+{
+  "name": "portfolio-v3",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:content": "node scripts/build-content.js"
+  },
+  "devDependencies": {
+    "marked": "^12.0.0"
+  }
+}
+```
+
+**Example build script (allowed):**
+
+```javascript
+// scripts/build-content.js
+const fs = require('fs');
+const marked = require('marked');
+
+// Read markdown files from /case-studies/
+// Parse to HTML
+// Write to appropriate output location
+// Simple, single-purpose, no complexity
+```
+
+### Prohibited Build Tools
+
+- ❌ Webpack, vite, parcel, rollup, esbuild, or any bundler
+- ❌ Babel (no transpilation needed)
+- ❌ TypeScript compiler
+- ❌ Sass, Less, PostCSS compilers
+- ❌ Any CSS-in-JS tooling
+- ❌ Hot module replacement systems
+- ❌ Dev servers beyond simple static file serving
+
+## Content Management
+
+### Markdown → HTML Workflow
+
+**Source files:**
+
+- ✅ Case studies authored in markdown: `/case-studies/*.md`
+- ✅ Downloadable content in markdown: `/assets/downloads/*.md`
+
+**Build process:**
+
+1. Author/update markdown files
+2. Run build script: `npm run build:content`
+3. Script generates HTML
+4. Deploy HTML files (not markdown)
+
+**Why this approach:**
+
+- Markdown authoring convenience
+- Zero runtime JavaScript for parsing
+- Fully-rendered HTML for SEO
+- No client-side dependencies
+- Fast page loads
+- Simple deployment
+
+### File Structure
+
+```text
+/case-studies/*.md        → Source content (markdown)
+/css/*.css               → Vanilla stylesheets
+/js/*.js                 → Vanilla JavaScript
+/index.html              → Main page (hand-written HTML)
+/portfolio.html          → Portfolio page (hand-written HTML)
+/assets/                 → Static assets
+/scripts/                → Build scripts (dev only, not deployed)
+package.json             → Dev dependencies only
+```
+
+## Rationale
+
+### Why Vanilla?
+
+1. **Performance** - Zero framework overhead, instant load times
+2. **Maintainability** - No framework churn, no breaking updates
+3. **Longevity** - HTML/CSS/JS won't deprecate
+4. **Simplicity** - Easy to understand, easy to update
+5. **SEO** - Fully rendered HTML, no hydration needed
+6. **Accessibility** - Direct control over markup
+7. **File size** - Smallest possible bundle size
+
+### Why Build-Time Markdown?
+
+1. **Authoring DX** - Markdown is easier to write than HTML
+2. **Zero runtime cost** - No parsing library shipped to users
+3. **SEO benefits** - Search engines see fully-rendered content
+4. **Performance** - Pre-rendered HTML loads instantly
+5. **Separation of concerns** - Authoring (markdown) vs delivery (HTML)
+
+### Why Not Client-Side Parsing?
+
+- ❌ Requires shipping markdown parser (~50KB+)
+- ❌ Slower initial render (parsing takes time)
+- ❌ Worse SEO (search engines may not wait for JS)
+- ❌ Unnecessary complexity for content that updates occasionally
+
+### Why Not Frameworks?
+
+**React/Vue/Angular would add:**
+
+- ~40-100KB+ of framework code
+- Build complexity (bundlers, transpilers, etc.)
+- Framework-specific patterns and dependencies
+- Regular breaking changes requiring updates
+- Runtime overhead for hydration/rendering
+
+**For a portfolio site that:**
+
+- Updates occasionally
+- Needs fast load times
+- Requires excellent SEO
+- Should be maintainable for years
+
+**Vanilla is the obvious choice.**
+
+## Decision Matrix
+
+| Feature/Need | Solution | Prohibited Alternative |
+|--------------|----------|------------------------|
+| HTML structure | Hand-written HTML5 | React, Vue, templates |
+| Styling | Vanilla CSS | Tailwind, Bootstrap, Sass |
+| Interactivity | Vanilla JS | jQuery, frameworks |
+| Case studies | Markdown → HTML (build) | Client-side parsing |
+| Responsiveness | CSS media queries | Framework utilities |
+| DOM manipulation | `querySelector`, events | jQuery, React |
+| HTTP requests | Native `fetch()` | Axios, jQuery.ajax |
+| Module system | ES6 modules (if needed) | Bundler-based imports |
+| Code organization | Separate CSS/JS files | CSS-in-JS, bundlers |
+
+## Quick Reference
+
+| Task | Use This | NOT This |
+|------|----------|----------|
+| Create page | Write `.html` file | JSX, `.vue`, template |
+| Style component | Write `.css` class | Tailwind, styled-components |
+| Handle click | `addEventListener()` | `onClick={}`, jQuery |
+| Update content | Edit markdown, rebuild | CMS, database |
+| Add animation | CSS transitions/keyframes | Animation library |
+| Make it responsive | CSS media queries | Bootstrap grid |
+| Fetch data | `fetch()` API | Axios, jQuery |
+| Update DOM | `element.innerHTML` | React state, Vue reactivity |
+
+## Enforcement
+
+### Before Adding Any Dependency
+
+Ask these questions:
+
+1. **Is this for production or build-time?**
+   - Production: Must be vanilla only
+   - Build-time: Must be essential for content processing
+
+2. **Can this be done with vanilla HTML/CSS/JS?**
+   - If YES: Use vanilla (99% of the time, the answer is yes)
+   - If NO: Reconsider the requirement
+
+3. **Is this dependency worth the cost?**
+   - Consider: bundle size, maintenance, complexity
+   - For this portfolio: The answer is almost always "no"
+
+4. **Will users download this code?**
+   - If YES: Not allowed
+   - If NO (build-time only): Evaluate if truly necessary
+
+### Exceptions
+
+There are **NO exceptions** to the production vanilla rule.
+
+Build-time exceptions require:
+
+- Clear justification
+- Measurable benefit to content authoring workflow
+- Zero impact on production bundle
+- Minimal maintenance burden
+
+## AI Assistant Instructions
+
+When working on this portfolio:
+
+1. **NEVER suggest adding frameworks** (React, Vue, etc.)
+2. **NEVER suggest adding CSS frameworks** (Tailwind, Bootstrap, etc.)
+3. **NEVER suggest adding JavaScript libraries** (jQuery, Lodash, etc.)
+4. **NEVER suggest adding bundlers** for production code
+5. **ALWAYS use vanilla HTML/CSS/JS** for any implementation
+6. **ALWAYS write actual code**, not framework-specific syntax
+7. **If suggesting build tools**, limit to markdown parsing only
+
+### Example Corrections
+
+❌ "Let's add Tailwind for easier styling"
+✅ "Let's write custom CSS classes in `/css/components.css`"
+
+❌ "We should use React for the portfolio grid"
+✅ "Let's write HTML markup and CSS Grid for the portfolio layout"
+
+❌ "Install axios for HTTP requests"
+✅ "Use the native `fetch()` API"
+
+❌ "Let's add a markdown parser library to the site"
+✅ "Let's create a build script that converts markdown to HTML before deployment"
+
+## Compliance
+
+**This is a HARD RULE file.**
+
+All code MUST comply with these guidelines. If you cannot implement a feature using:
+
+- Vanilla HTML5
+- Vanilla CSS3
+- Vanilla JavaScript (ES6+)
+- Build-time markdown parsing (only)
+
+Then either:
+
+1. Simplify the requirement to work with vanilla
+2. Flag it as incompatible with the architecture
+
+**Do not introduce frameworks, libraries, or build complexity.**
+
+The goal is a portfolio that:
+
+- Loads instantly
+- Requires minimal maintenance
+- Works without JavaScript (progressive enhancement)
+- Lasts for years without dependency updates
+
+---
+
+**Last Updated:** 15 October 2025  
+**Enforcement:** Mandatory for all code  
+**Architecture:** Vanilla production, minimal build tooling

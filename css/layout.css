@@ -1,0 +1,258 @@
+/**
+ * Modern Layout System
+ * Asymmetrical, playful sections with varied layouts
+ * Future Friendly-inspired approach
+ */
+
+/* ================================
+   HERO - BOLD STATEMENT
+   ================================ */
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: var(--space-4xl) 0;
+  background: var(--color-background);
+  position: relative;
+}
+
+.hero-minimal {
+  max-width: 900px;
+}
+
+.hero-statement {
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  color: var(--color-black);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.02em;
+}
+
+.hero-subtext {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+}
+
+/* ================================
+   SECTION LAYOUTS - ASYMMETRICAL
+   ================================ */
+
+/* Dark section with white text */
+.section-dark {
+  background: var(--color-background-dark);
+  color: var(--color-white);
+  padding: var(--space-4xl) 0;
+}
+
+.section-dark h2,
+.section-dark h3 {
+  color: var(--color-white);
+}
+
+.section-dark p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Full-width section with contained content */
+.section-full {
+  width: 100%;
+  padding: var(--space-4xl) 0;
+}
+
+/* Narrow content column with lots of whitespace */
+.section-narrow {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: var(--space-4xl) var(--space-md);
+}
+
+/* Asymmetric split: 70/30 layout */
+.split-70-30 {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: var(--space-3xl);
+  align-items: start;
+}
+
+/* Asymmetric split: 60/40 layout */
+.split-60-40 {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+/* Offset grid */
+.grid-offset {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-xl);
+}
+
+.grid-offset > *:nth-child(1) {
+  grid-column: 1 / 7;
+}
+
+.grid-offset > *:nth-child(2) {
+  grid-column: 8 / 13;
+  margin-top: var(--space-3xl);
+}
+
+/* ================================
+   MASONRY GRID FOR PROJECTS
+   ================================ */
+
+/* Container for masonry layout (JS will add flex styles) */
+.masonry-grid {
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* Masonry columns (created by JS) */
+.masonry-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Ensure cards don't break across columns */
+.masonry-grid .project-card {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ================================
+   BACKGROUND FADE EFFECT
+   ================================ */
+
+/* Body background fades from off-white to amber */
+body {
+  background-color: var(--color-background);
+  transition: background-color 0.8s ease;
+}
+
+body.bg-faded {
+  background-color: var(--color-highlight);
+}
+
+/* Fade trigger section */
+.section-fade {
+  position: relative;
+  padding: var(--space-4xl) 0;
+  background: transparent;
+}
+
+.section-fade-cta {
+  text-align: center;
+  padding: var(--space-3xl) 0;
+}
+
+.fade-cta-statement {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-black);
+  margin-bottom: var(--space-xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================================
+   TYPOGRAPHY-DRIVEN SECTIONS
+   ================================ */
+
+.section-typography {
+  padding: var(--space-4xl) 0;
+}
+
+.section-typography h2 {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--space-2xl);
+}
+
+.section-typography .intro-text {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  margin-bottom: var(--space-3xl);
+  max-width: 800px;
+}
+
+.section-typography .body-text {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+/* Clean dividers instead of cards */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-3xl) 0;
+  opacity: 0.3;
+}
+
+.divider-thick {
+  height: 2px;
+  background: var(--color-primary);
+  margin: var(--space-3xl) 0;
+}
+
+/* ================================
+   RESPONSIVE LAYOUTS
+   ================================ */
+
+@media (max-width: 1024px) {
+  .split-70-30,
+  .split-60-40 {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+  
+  .grid-offset {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-offset > *:nth-child(2) {
+    margin-top: 0;
+  }
+  
+  .masonry-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+    padding: var(--space-3xl) 0;
+  }
+  
+  .masonry-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  .section-narrow {
+    padding: var(--space-2xl) var(--space-md);
+  }
+  
+  .section-full {
+    padding: var(--space-3xl) 0;
+  }
+  
+  .section-dark {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+
+

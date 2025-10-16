@@ -30,16 +30,15 @@ h6 {
   line-height: var(--line-height-tight);
   color: var(--color-heading);
   margin-bottom: var(--space-md);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 h1 {
   font-size: var(--font-size-h1);
-  letter-spacing: var(--letter-spacing-tight);
 }
 
 h2 {
   font-size: var(--font-size-h2);
-  letter-spacing: var(--letter-spacing-tight);
 }
 
 h3 {
@@ -77,12 +76,15 @@ a {
 }
 
 a:hover {
-  color: var(--color-yellow);
+  color: var(--color-secondary);
   text-decoration: underline;
 }
 
 a:focus-visible {
-  color: var(--color-yellow);
+  color: var(--color-secondary);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Text emphasis */
@@ -143,7 +145,7 @@ small {
 
 /* Text colours */
 .text-primary {
-  color: var(--color-yellow);
+  color: var(--color-primary);
 }
 
 .text-muted {
@@ -189,11 +191,14 @@ li {
 
 /* Blockquotes */
 blockquote {
-  border-left: 4px solid var(--color-yellow);
+  font-family: var(--font-family-base);
+  border-left: 4px solid var(--color-primary);
   padding-left: var(--space-lg);
   margin: var(--space-lg) 0;
+  font-size: var(--font-size-lg);
   font-style: italic;
-  color: var(--color-grey-dark);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
 }
 
 /* Code */
