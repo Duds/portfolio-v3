@@ -1,3 +1,12 @@
+---
+name: Visual Brand Design Audit
+description: Maintains brand consistency and emotional connection through design systems with typography, colour systems, responsive design, and motion principles aligned with brand values
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["brand-audit", "visual-audit", "design-audit"]
+---
+
 # Visual / Brand Design Audit
 
 ## Purpose

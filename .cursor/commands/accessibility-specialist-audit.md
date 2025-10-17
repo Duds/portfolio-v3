@@ -1,3 +1,12 @@
+---
+name: Accessibility Specialist Audit
+description: Ensures the portfolio website meets inclusivity and compliance standards for WCAG 2.1 Level AA and Australian Disability Discrimination Act (DDA) requirements with screen reader compatibility and semantic markup
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["accessibility-audit", "a11y-audit", "wcag-audit"]
+---
+
 # Accessibility Specialist Audit
 
 ## Purpose

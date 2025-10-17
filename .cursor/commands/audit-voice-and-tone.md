@@ -1,3 +1,12 @@
+---
+name: Voice and Tone Audit
+description: Audit any marketing copy, website content, case study, email, or proposal against the Dale Rogers voice and tone guidelines for brand consistency
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["voice-audit", "tone-audit", "brand-voice"]
+---
+
 # Voice & Tone Audit Command
 
 **Purpose:** Audit any marketing copy, website content, case study, email, or proposal against the Dale Rogers voice and tone guidelines.

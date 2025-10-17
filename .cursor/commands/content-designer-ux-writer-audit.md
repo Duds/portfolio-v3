@@ -1,3 +1,12 @@
+---
+name: Content Designer UX Writer Audit
+description: Ensures clarity, tone, and structure of language across digital services with focus on Plain English principles, structured authoring, information architecture, and voice and tone alignment
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["content-audit", "writing-audit", "ux-writing"]
+---
+
 # Content Designer / UX Writer Audit
 
 ## Purpose

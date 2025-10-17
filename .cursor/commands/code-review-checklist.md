@@ -1,3 +1,12 @@
+---
+name: Code Review Checklist
+description: Comprehensive checklist for conducting thorough code reviews to ensure quality, security, and maintainability with focus on functionality, code quality, security, and performance
+version: 1.0.0
+category: checklist
+last_updated: 16/10/2025
+triggers: ["code-review", "review-code", "cr"]
+---
+
 # Code Review Checklist
 
 ## Overview

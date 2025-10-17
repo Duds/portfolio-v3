@@ -1,3 +1,12 @@
+---
+name: Security Audit
+description: Ensures the portfolio website adheres to secure-by-design principles, privacy-by-design standards, and regulatory compliance requirements with comprehensive security architecture review
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["security-audit", "sec-audit", "security-review"]
+---
+
 # Security Audit
 
 ## Purpose

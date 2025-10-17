@@ -1,0 +1,142 @@
+# Azure Pipelines CI/CD for Portfolio v3
+# Triggers on push to main branch (trunk-based development)
+# Builds content and deploys to Azure Static Web Apps
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - README.md
+      - .docs/**
+      - .cursor/**
+
+# Trigger on Pull Requests to create staging environments
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - README.md
+      - .docs/**
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  nodeVersion: '18.x'
+
+stages:
+  - stage: Build
+    displayName: 'Build and Validate'
+    jobs:
+      - job: BuildJob
+        displayName: 'Build Portfolio Content'
+        steps:
+          - task: NodeTool@0
+            displayName: 'Install Node.js'
+            inputs:
+              versionSpec: '$(nodeVersion)'
+
+          - script: |
+              npm install
+            displayName: 'Install dependencies'
+
+          - script: |
+              node scripts/build-content.js
+            displayName: 'Build content from markdown'
+
+          - script: |
+              npm audit --audit-level=high
+            displayName: 'Security audit (high/critical only)'
+            continueOnError: true
+
+          # Archive build artifacts
+          - task: ArchiveFiles@2
+            displayName: 'Archive built site'
+            inputs:
+              rootFolderOrFile: '$(Build.SourcesDirectory)'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/portfolio-$(Build.BuildId).zip'
+              replaceExistingArchive: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish artifacts'
+            inputs:
+              pathToPublish: '$(Build.ArtifactStagingDirectory)'
+              artifactName: 'portfolio'
+
+  - stage: DeployProduction
+    displayName: 'Deploy to Production'
+    dependsOn: Build
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: DeployProd
+        displayName: 'Deploy to Production (dalerogers.com.au)'
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: DownloadBuildArtifacts@0
+                  displayName: 'Download build artifacts'
+                  inputs:
+                    buildType: 'current'
+                    downloadType: 'single'
+                    artifactName: 'portfolio'
+                    downloadPath: '$(System.ArtifactsDirectory)'
+
+                - task: ExtractFiles@1
+                  displayName: 'Extract artifacts'
+                  inputs:
+                    archiveFilePatterns: '$(System.ArtifactsDirectory)/portfolio/portfolio-*.zip'
+                    destinationFolder: '$(System.DefaultWorkingDirectory)/extracted'
+                    cleanDestinationFolder: true
+
+                - task: AzureStaticWebApp@0
+                  displayName: 'Deploy to Azure Static Web Apps'
+                  inputs:
+                    app_location: '$(System.DefaultWorkingDirectory)/extracted'
+                    output_location: ''
+                    azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+                    skip_app_build: true
+
+  - stage: DeployStaging
+    displayName: 'Deploy to Staging (PR Preview)'
+    dependsOn: Build
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+    jobs:
+      - deployment: DeployStaging
+        displayName: 'Deploy PR Preview'
+        environment: 'staging'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: DownloadBuildArtifacts@0
+                  displayName: 'Download build artifacts'
+                  inputs:
+                    buildType: 'current'
+                    downloadType: 'single'
+                    artifactName: 'portfolio'
+                    downloadPath: '$(System.ArtifactsDirectory)'
+
+                - task: ExtractFiles@1
+                  displayName: 'Extract artifacts'
+                  inputs:
+                    archiveFilePatterns: '$(System.ArtifactsDirectory)/portfolio/portfolio-*.zip'
+                    destinationFolder: '$(System.DefaultWorkingDirectory)/extracted'
+                    cleanDestinationFolder: true
+
+                - task: AzureStaticWebApp@0
+                  displayName: 'Deploy to Staging Environment'
+                  inputs:
+                    app_location: '$(System.DefaultWorkingDirectory)/extracted'
+                    output_location: ''
+                    azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN)
+                    skip_app_build: true
+                    deployment_environment: 'staging'
+

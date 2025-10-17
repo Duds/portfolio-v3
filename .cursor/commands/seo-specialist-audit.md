@@ -1,3 +1,12 @@
+---
+name: SEO Specialist Audit
+description: Optimises the portfolio website for traditional search engines, AI-powered search platforms, and large language model retrieval with technical SEO, semantic markup, and AI-SEO adaptation
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["seo-audit", "search-audit", "seo-review"]
+---
+
 # SEO Specialist Audit
 
 ## Purpose

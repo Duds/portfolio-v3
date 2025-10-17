@@ -1,3 +1,12 @@
+---
+name: UX UI Design Audit
+description: Creates usable, consistent, and accessible digital interfaces with focus on interaction design, WCAG accessibility compliance, interface consistency, and overall user experience quality
+version: 1.0.0
+category: audit
+last_updated: 16/10/2025
+triggers: ["ux-audit", "ui-audit", "design-review"]
+---
+
 # UX/UI Design Audit
 
 ## Purpose
